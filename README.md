@@ -11,12 +11,11 @@ This Snakemake workflow compares different plotting libraries in Python.
 
 2. **Create Environment**: Create a dedicated Conda environment for the workflow using Mamba:
 
-`mamba env create -f env_plotting.yaml`
+`mamba create -c conda-forge -c bioconda -n snakemake snakemake`
 
 3. **Activate Environment**: Activate the created environment:
 
-`mamba activate car_plotting`
-
+`mamba activate snakemake`
 
 ## Running the Workflow
 
