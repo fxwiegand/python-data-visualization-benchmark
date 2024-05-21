@@ -21,7 +21,7 @@ jobs:
       with:
         directory: .
         snakefile: Snakefile
-        args: "--use-conda"
+        args: "--use-conda --cores 1"
         show-disk-usage-on-error: true
 
     - name: Upload results
