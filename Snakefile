@@ -7,7 +7,7 @@ rule all:
         "results/altair.png",
         "results/matplotlib.png",
         "results/plotly.png",
-        "loc.csv"
+        "results/loc.csv"
 
 rule altair:
     input:
@@ -53,7 +53,7 @@ rule count_loc:
     input:
         scripts=get_all_py_files("scripts")
     output:
-        "loc.csv"
+        "results/loc.csv"
     run:
         loc_dict = {}
 
