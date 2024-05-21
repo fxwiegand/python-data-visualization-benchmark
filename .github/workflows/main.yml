@@ -1,0 +1,43 @@
+name: Run python data visualization benchmark
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  snakemake:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Mamba
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget bzip2
+        wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+        ./bin/micromamba shell init -s bash -p ~/micromamba
+        source ~/.bashrc
+        micromamba create -y -n snakemake -c bioconda snakemake
+
+    - name: Activate environment
+      run: |
+        source ~/.bashrc
+        micromamba activate snakemake
+
+    - name: Run Snakemake
+      run: |
+        source ~/.bashrc
+        micromamba activate snakemake_env
+        snakemake --cores 1 --use-conda
+
+    - name: Upload results
+      uses: actions/upload-artifact@v2
+      with:
+        name: results
+        path: results/
