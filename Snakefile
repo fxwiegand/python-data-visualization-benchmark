@@ -27,7 +27,7 @@ def get_all_py_files(directory):
     py_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-            if file.endswith(".py"):
+            if file.endswith(".py") and file != "loc_types.py":
                 py_files.append(os.path.join(root,file))
     return py_files
 
