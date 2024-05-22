@@ -2,42 +2,24 @@ import os
 
 DATASET = "cars"
 
+libraries = ["altair", "plotly", "matplotlib"]
+
 rule all:
     input:
-        "results/altair.png",
-        "results/matplotlib.png",
-        "results/plotly.png",
+        expand("results/{library}.png", library=libraries),
         "results/loc.csv"
 
-rule altair:
+rule bar:
     input:
         f"data/{DATASET}.csv"
     output:
-        "results/altair.png",
+        "results/{library}.png",
     conda:
-        "envs/altair.yaml"
+        "envs/{library}.yaml"
+    benchmark:
+        repeat("results/benchmarks/{library}.benchmark.txt", 10)
     script:
-        "scripts/altair/bar.py"
-
-rule matplotlib:
-    input:
-        f"data/{DATASET}.csv"
-    output:
-        "results/matplotlib.png",
-    conda:
-        "envs/matplotlib.yaml"
-    script:
-        "scripts/matplotlib/bar.py"
-
-rule plotly:
-    input:
-        f"data/{DATASET}.csv"
-    output:
-        "results/plotly.png",
-    conda:
-        "envs/plotly.yaml"
-    script:
-        "scripts/plotly/bar.py"
+        "scripts/{wildcards.library}/bar.py"
 
 
 def get_all_py_files(directory):
