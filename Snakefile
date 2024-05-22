@@ -2,7 +2,7 @@ import os
 
 DATASET = "cars"
 
-libraries = ["altair", "plotly", "matplotlib"]
+libraries = ["altair", "plotly", "matplotlib", "seaborn"]
 
 rule all:
     input:
