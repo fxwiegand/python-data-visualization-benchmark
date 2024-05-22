@@ -1,17 +1,17 @@
-import pandas as pd
-import matplotlib.pyplot as plt
+import pandas as pd  # i
+import matplotlib.pyplot as plt  # i
 
-input_csv = snakemake.input[0]
-output_png = snakemake.output[0]
+input_csv = snakemake.input[0]  # io
+output_png = snakemake.output[0]  # io
 
-df = pd.read_csv(input_csv)
+df = pd.read_csv(input_csv)  # io
 
-plt.figure(figsize=(10, 6))
-plt.bar(df['Make'], df['Price'], color='skyblue')
-plt.xlabel('Make')
-plt.ylabel('Price')
-plt.title('Car Prices by Make')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig(output_png)
-plt.close()
+plt.figure(figsize=(10, 6))  # pd
+plt.bar(df['Make'], df['Price'], color='skyblue')  # pd
+plt.xlabel('Make')  # pd
+plt.ylabel('Price')  # pd
+plt.title('Car Prices by Make')  # pd
+plt.xticks(rotation=45)  # pd
+plt.tight_layout()  # pd
+plt.savefig(output_png)  # io
+plt.close()  # io

@@ -7,7 +7,8 @@ libraries = ["altair", "plotly", "matplotlib"]
 rule all:
     input:
         expand("results/{library}.png", library=libraries),
-        "results/loc.csv"
+        "results/loc.csv",
+        "results/loc_types.csv"
 
 rule bar:
     input:
@@ -51,4 +52,10 @@ rule count_loc:
                 csv_file.write(f"{file},{loc}\n")
 
 
-
+rule loc_types:
+    input:
+        scripts=expand("scripts/{library}/bar.py", library=libraries)
+    output:
+        summary="results/loc_types.csv"
+    script:
+        "scripts/loc_types.py"
