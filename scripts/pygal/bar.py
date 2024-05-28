@@ -2,7 +2,7 @@ import pandas as pd  # i
 import pygal  # i
 
 input_csv = snakemake.input[0]  # io
-output_png = snakemake.output[0]  # io
+output_svg = snakemake.output[0]  # io
 
 df = pd.read_csv(input_csv)  # io
 
@@ -13,4 +13,4 @@ bar_chart.title = 'Car Prices by Make'  # pd
 for make, prices in data.items():  # pd
     bar_chart.add(make, prices)  # pd
 
-bar_chart.render_to_png(output_png)  # io
+bar_chart.render_to_file(output_svg)  # io

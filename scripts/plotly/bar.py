@@ -3,7 +3,7 @@ import plotly.graph_objects as go  # i
 import plotly.io as pio  # i
 
 input_csv = snakemake.input[0]  # io
-output_png = snakemake.output[0]  # io
+output_svg = snakemake.output[0]  # io
 
 df = pd.read_csv(input_csv)  # io
 
@@ -14,4 +14,4 @@ fig.update_layout(  # pd
     yaxis_title='Price'  # pd
 )  # pd
 
-pio.write_image(fig, output_png, format='png')  # io
+pio.write_image(fig, output_svg, format='svg')  # io

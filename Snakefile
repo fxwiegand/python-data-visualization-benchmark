@@ -6,7 +6,7 @@ libraries = ["altair", "plotly", "matplotlib", "seaborn", "pygal"]
 
 rule all:
     input:
-        expand("results/{library}.png", library=libraries),
+        expand("results/{library}.svg", library=libraries),
         "results/loc.csv",
         "results/loc_types.csv"
 
@@ -14,7 +14,7 @@ rule bar:
     input:
         f"data/{DATASET}.csv"
     output:
-        "results/{library}.png",
+        "results/{library}.svg",
     conda:
         "envs/{library}.yaml"
     benchmark:
