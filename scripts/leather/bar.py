@@ -12,7 +12,6 @@ title = snakemake.config["title"]  # pd
 
 data = list(zip(df[x_column], df[y_column]))  # pd
 
-# Create a new Leather chart
 chart = leather.Chart(title)  # pd
 
 chart.add_columns(data)  # pd
