@@ -3,10 +3,12 @@ import os
 configfile: "config.yaml"
 
 libraries = ["altair", "plotly", "matplotlib", "seaborn", "pygal", "plotnine", "leather"]
+plot_types = ["bar", "scatter"]
 
 rule all:
     input:
-        expand("results/{library}.svg", library=libraries),
+        expand("results/bar/{library}.svg", library=libraries),
+        "results/scatter/altair.svg",
         "results/loc.csv",
         "results/loc_types.csv"
 
@@ -14,13 +16,13 @@ rule bar:
     input:
         config["dataset"],
     output:
-        "results/{library}.svg",
+        "results/{plot_type}/{library}.svg",
     conda:
         "envs/{library}.yaml"
     benchmark:
-        repeat("results/benchmarks/{library}.benchmark.txt", 10)
+        repeat("results/benchmarks/{plot_type}/{library}.benchmark.txt", 10)
     script:
-        "scripts/{wildcards.library}/bar.py"
+        "scripts/{wildcards.library}/{wildcards.plot_type}.py"
 
 
 def get_all_py_files(directory):
