@@ -1,0 +1,4 @@
+dataset: data/cars.csv
+x: "Make"
+y: "Price"
+title: "Car Prices by Make"

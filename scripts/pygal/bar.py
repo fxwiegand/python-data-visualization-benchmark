@@ -6,7 +6,7 @@ output_svg = snakemake.output[0]  # io
 
 df = pd.read_csv(input_csv)  # io
 
-data = {make: list(group['Price']) for make, group in df.groupby('Make')} # pd
+data = {make: list(group[snakemake.config["y"]]) for make, group in df.groupby(snakemake.config["x"])} # pd
 
 bar_chart = pygal.Bar()  # pd
 bar_chart.title = 'Car Prices by Make'  # pd

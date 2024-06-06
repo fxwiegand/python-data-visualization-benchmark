@@ -1,6 +1,6 @@
 import os
 
-DATASET = "cars"
+configfile: "config.yaml"
 
 libraries = ["altair", "plotly", "matplotlib", "seaborn", "pygal"]
 
@@ -12,7 +12,7 @@ rule all:
 
 rule bar:
     input:
-        f"data/{DATASET}.csv"
+        config["dataset"],
     output:
         "results/{library}.svg",
     conda:

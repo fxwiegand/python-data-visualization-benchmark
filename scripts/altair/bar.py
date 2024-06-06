@@ -8,8 +8,8 @@ output_svg = snakemake.output[0]  # io
 df = pd.read_csv(input_csv)  # io
 
 bar_chart = alt.Chart(df).mark_bar().encode(  # pd
-    x=alt.X('Make', sort=None),  # pd
-    y='Price',  # pd
+    x=alt.X(snakemake.config["x"], sort=None),  # pd
+    y=snakemake.config["y"],  # pd
 ).properties(  # pd
     title='Car Prices by Make'  # pd
 )  # pd
