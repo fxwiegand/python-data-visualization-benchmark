@@ -11,7 +11,7 @@ bar_chart = alt.Chart(df).mark_bar().encode(  # pd
     x=alt.X(snakemake.config["x"], sort=None),  # pd
     y=snakemake.config["y"],  # pd
 ).properties(  # pd
-    title='Car Prices by Make'  # pd
+    title=snakemake.config["title"]  # pd
 )  # pd
 
 bar_chart.save(output_svg) # io
