@@ -1,5 +1,5 @@
 dataset: data/cars.csv
 x: "Make"
 y: "Price"
-color: "Year"
+scatter_x: "Year"
 title: "Car Prices by Make"

@@ -7,8 +7,7 @@ plot_types = ["bar", "scatter"]
 
 rule all:
     input:
-        expand("results/bar/{library}.svg", library=libraries),
-        "results/scatter/altair.svg",
+        expand("results/{plot_type}/{library}.svg", library=libraries, plot_type=plot_types),
         "results/loc.csv",
         "results/loc_types.csv"
 

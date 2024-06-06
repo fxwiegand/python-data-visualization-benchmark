@@ -8,9 +8,8 @@ output_svg = snakemake.output[0]  # io
 df = pd.read_csv(input_csv)  # io
 
 bar_chart = alt.Chart(df).mark_circle(size=60).encode(  # pd
-    x=alt.X(snakemake.config["x"], sort=None),  # pd
+    x=alt.X(snakemake.config["scatter_x"], sort=None),  # pd
     y=snakemake.config["y"],  # pd
-    color=snakemake.config["color"],  # pd
 ).properties(  # pd
     title=snakemake.config["title"]  # pd
 )  # pd
