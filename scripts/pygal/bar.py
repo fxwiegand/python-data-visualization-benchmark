@@ -9,7 +9,7 @@ df = pd.read_csv(input_csv)  # io
 data = {make: list(group[snakemake.config["y"]]) for make, group in df.groupby(snakemake.config["x"])} # pd
 
 bar_chart = pygal.Bar()  # pd
-bar_chart.title = 'Car Prices by Make'  # pd
+bar_chart.title = snakemake.config["title"]  # pd
 for make, prices in data.items():  # pd
     bar_chart.add(make, prices)  # pd
 
