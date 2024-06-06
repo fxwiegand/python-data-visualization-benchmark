@@ -2,7 +2,7 @@ import os
 
 configfile: "config.yaml"
 
-libraries = ["altair", "plotly", "matplotlib", "seaborn", "pygal"]
+libraries = ["altair", "plotly", "matplotlib", "seaborn", "pygal", "plotnine"]
 
 rule all:
     input:
