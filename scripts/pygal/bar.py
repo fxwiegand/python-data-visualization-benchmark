@@ -6,7 +6,10 @@ output_svg = snakemake.output[0]  # io
 
 df = pd.read_csv(input_csv)  # io
 
-data = {make: list(group[snakemake.config["y"]]) for make, group in df.groupby(snakemake.config["x"])} # pd
+data = {  # pd
+    make: list(group[snakemake.config["y"]])  # pd
+    for make, group in df.groupby(snakemake.config["x"])  # pd
+}  # pd
 
 bar_chart = pygal.Bar()  # pd
 bar_chart.title = snakemake.config["title"]  # pd

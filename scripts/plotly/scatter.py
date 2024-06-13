@@ -7,11 +7,19 @@ output_svg = snakemake.output[0]  # io
 
 df = pd.read_csv(input_csv)  # io
 
-fig = go.Figure(data=[go.Scatter(x=df[snakemake.config["scatter_x"]], y=df[snakemake.config["y"]], mode="markers")])  # pd
+fig = go.Figure(  # pd
+    data=[  # pd
+        go.Scatter(  # pd
+            x=df[snakemake.config["scatter_x"]],  # pd
+            y=df[snakemake.config["y"]],  # pd
+            mode="markers",  # pd
+        )  # pd
+    ]  # pd
+)  # pd
 fig.update_layout(  # pd
     title=snakemake.config["title"],  # pd
     xaxis_title=snakemake.config["scatter_x"],  # pd
-    yaxis_title=snakemake.config["y"]  # pd
+    yaxis_title=snakemake.config["y"],  # pd
 )  # pd
 
-pio.write_image(fig, output_svg, format='svg')  # io
+pio.write_image(fig, output_svg, format="svg")  # io

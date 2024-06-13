@@ -7,7 +7,7 @@ output_svg = snakemake.output[0]  # io
 df = pd.read_csv(input_csv)  # io
 
 plt.figure(figsize=(10, 6))  # pd
-plt.bar(df[snakemake.config["x"]], df[snakemake.config["y"]], color='skyblue')  # pd
+plt.bar(df[snakemake.config["x"]], df[snakemake.config["y"]], color="skyblue")  # pd
 plt.xlabel(snakemake.config["x"])  # pd
 plt.ylabel(snakemake.config["y"])  # pd
 plt.title(snakemake.config["title"])  # pd
