@@ -8,6 +8,7 @@ plot_types = ["bar", "scatter"]
 rule all:
     input:
         expand("results/{plot_type}/{library}.svg", library=libraries, plot_type=plot_types),
+        "results/complexities.txt",
         "results/loc.csv",
         "results/loc_types.csv"
 
@@ -60,3 +61,13 @@ rule loc_types:
         summary="results/loc_types.csv"
     script:
         "scripts/loc_types.py"
+
+rule script_complexity:
+    input:
+        "scripts/"
+    output:
+        "results/complexities.txt"
+    conda:
+        "envs/complexipy.yaml"
+    shell:
+        "complexipy -l file {input} > {output}"
