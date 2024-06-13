@@ -9,6 +9,18 @@ on:
       - main
 
 jobs:
+  Format:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check format with black  
+      uses: jpetrucciani/black-check@master
+      with:
+        path: 'scripts/'
+      
   Snakemake:
     runs-on: ubuntu-latest
 
