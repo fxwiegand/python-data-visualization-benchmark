@@ -71,3 +71,9 @@ rule script_complexity:
         "envs/complexipy.yaml"
     shell:
         "complexipy -l file {input} > {output}"
+
+rule fetch_data:
+    output:
+        "data/healthdata.csv"
+    shell:
+        "wget -O {output} 'https://healthdata.gov/resource/xkzp-zhs7.csv?\$limit=100000'"
