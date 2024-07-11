@@ -10,7 +10,9 @@ rule all:
         expand("results/{plot_type}/{library}.svg", library=libraries, plot_type=plot_types),
         "results/complexities.txt",
         "results/loc.csv",
-        "results/loc_types.csv"
+        "results/loc_types.csv",
+        "results/loc.png",
+        "results/benchmarks.png"
 
 rule bar:
     input:
@@ -29,7 +31,7 @@ def get_all_py_files(directory):
     py_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-            if file.endswith(".py") and file != "loc_types.py":
+            if file.endswith(".py") and file != "loc_types.py" and file != "plot_loc.py" and file != "plot_benchmarks.py":
                 py_files.append(os.path.join(root,file))
     return py_files
 
@@ -57,6 +59,27 @@ rule count_loc:
             for lib, v in loc_dict.items():
                 for plot_type, loc in v.items():
                     csv_file.write(f"{lib},{plot_type},{loc}\n")
+
+
+rule plot_loc:
+    input:
+        "results/loc.csv"
+    output:
+        "results/loc.png"
+    conda:
+        "envs/matplotlib.yaml"
+    script:
+        "scripts/plot_loc.py"
+
+rule plot_benchmarks:
+    input:
+        expand("results/benchmarks/{plot_type}/{library}.benchmark.txt", library=libraries, plot_type=plot_types)
+    output:
+        "results/benchmarks.png"
+    conda:
+        "envs/matplotlib.yaml"
+    script:
+        "scripts/plot_benchmarks.py"
 
 
 rule loc_types:
