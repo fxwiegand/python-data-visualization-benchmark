@@ -7,7 +7,11 @@ output_svg = snakemake.output[0]  # io
 df = pd.read_csv(input_csv)  # io
 
 plt.figure(figsize=(10, 6))  # pd
-plt.scatter(df[snakemake.config["scatter_x"]], df[snakemake.config["y"]])  # pd
+plt.scatter(  # pd
+    df[snakemake.config["scatter_x"]],  # pd
+    df[snakemake.config["y"]],  # pd
+    c=df[snakemake.config["color"]],  # pd
+)  # pd
 plt.xlabel(snakemake.config["scatter_x"])  # pd
 plt.ylabel(snakemake.config["y"])  # pd
 plt.title(snakemake.config["title"])  # pd

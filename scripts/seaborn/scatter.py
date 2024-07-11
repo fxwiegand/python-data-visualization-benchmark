@@ -8,7 +8,12 @@ output_svg = snakemake.output[0]  # io
 df = pd.read_csv(input_csv)  # io
 
 plt.figure(figsize=(10, 6))  # pd
-sns.scatterplot(data=df, x=snakemake.config["scatter_x"], y=snakemake.config["y"])  # pd
+sns.scatterplot(  # pd
+    data=df,  # pd
+    x=snakemake.config["scatter_x"],  # pd
+    y=snakemake.config["y"],  # pd
+    hue=snakemake.config["color"],  # pd
+)  # pd
 plt.title(snakemake.config["title"])  # pd
 
 plt.savefig(output_svg, format="svg")  # io

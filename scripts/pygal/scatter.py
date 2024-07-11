@@ -7,12 +7,18 @@ output_svg = snakemake.output[0]  # io
 df = pd.read_csv(input_csv)  # io
 
 data_points = list(  # pd
-    zip(df[snakemake.config["scatter_x"]], df[snakemake.config["y"]])  # pd
+    zip(
+        df[snakemake.config["scatter_x"]],  # pd
+        df[snakemake.config["y"]],  # pd
+        df[snakemake.config["color"]],  # pd
+    )  # pd
 )  # pd
 
-bar_chart = pygal.XY(stroke=False)  # pd
-bar_chart.title = snakemake.config["title"]  # pd
+scatter_chart = pygal.XY(stroke=False)  # pd
+scatter_chart.title = snakemake.config["title"]  # pd
 
-bar_chart.add("Data Points", data_points)  # pd
+for color in df[snakemake.config["color"]].unique():  # pd
+    points = [(x, y) for x, y, c in data_points if c == color]  # pd
+    scatter_chart.add(color, points)  # pd
 
-bar_chart.render_to_file(output_svg)  # io
+scatter_chart.render_to_file(output_svg)  # io

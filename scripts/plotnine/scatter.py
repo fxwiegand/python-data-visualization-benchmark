@@ -8,7 +8,11 @@ df = pd.read_csv(input_csv)  # io
 
 bar_chart = (  # pd
     ggplot(df)  # pd
-    + aes(x=snakemake.config["x"], y=snakemake.config["y"])  # pd
+    + aes(  # pd
+        x=snakemake.config["x"],  # pd
+        y=snakemake.config["y"],  # pd
+        color=snakemake.config["color"],  # pd
+    )  # pd
     + geom_point()  # pd
     + labs(  # pd
         title=snakemake.config["title"],  # pd

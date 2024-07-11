@@ -12,6 +12,7 @@ bar_chart = (  # pd
     .encode(  # pd
         x=alt.X(snakemake.config["scatter_x"], sort=None),  # pd
         y=snakemake.config["y"],  # pd
+        color=snakemake.config["color"],  # pd
     )  # pd
     .properties(title=snakemake.config["title"])  # pd
 )  # pd
