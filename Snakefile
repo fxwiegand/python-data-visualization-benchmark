@@ -45,13 +45,18 @@ rule count_loc:
         for file in input.scripts:
             with open(file) as f:
                 num_lines = sum(1 for line in f if line.strip())
-
-            loc_dict[file] = num_lines
+            lib = file.split("/")[1]
+            plot_type = file.split("/")[2].split(".")[0]
+            print(lib, plot_type)
+            if lib not in loc_dict:
+                loc_dict[lib] = {}
+            loc_dict[lib][plot_type] = num_lines
 
         with open(output[0],'w') as csv_file:
-            csv_file.write("File Name,Lines of Code\n")
-            for file, loc in loc_dict.items():
-                csv_file.write(f"{file},{loc}\n")
+            csv_file.write("Library,Plot Type,Lines of Code\n")
+            for lib, v in loc_dict.items():
+                for plot_type, loc in v.items():
+                    csv_file.write(f"{lib},{plot_type},{loc}\n")
 
 
 rule loc_types:
