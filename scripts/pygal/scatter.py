@@ -19,6 +19,6 @@ scatter_chart.title = snakemake.config["title"]  # pd
 
 for color in df[snakemake.config["color"]].unique():  # pd
     points = [(x, y) for x, y, c in data_points if c == color]  # pd
-    scatter_chart.add(color, points)  # pd
+    scatter_chart.add(str(color), points)  # pd
 
 scatter_chart.render_to_file(output_svg)  # io
