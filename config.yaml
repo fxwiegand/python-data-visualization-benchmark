@@ -3,4 +3,4 @@ y: "Age"
 scatter_x: "Heart_Rate"
 color: "Cholesterol"
 title: "Medical Data"
-dataset_size: 10
+dataset_size: 100000
