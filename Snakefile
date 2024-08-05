@@ -14,9 +14,9 @@ rule all:
         "results/loc.png",
         "results/benchmarks.png"
 
-rule bar:
+rule plot:
     input:
-        config["dataset"],
+        "data/input.csv",
     output:
         "results/{plot_type}/{library}.svg",
     conda:
@@ -31,7 +31,7 @@ def get_all_py_files(directory):
     py_files = []
     for root, dirs, files in os.walk(directory):
         for file in files:
-            if file.endswith(".py") and file != "loc_types.py" and file != "plot_loc.py" and file != "plot_benchmarks.py":
+            if file.endswith(".py") and file != "loc_types.py" and file != "plot_loc.py" and file != "plot_benchmarks.py" and file != "generate_data.py":
                 py_files.append(os.path.join(root,file))
     return py_files
 
@@ -100,8 +100,10 @@ rule script_complexity:
     shell:
         "complexipy -l file {input} > {output}"
 
-rule fetch_data:
+rule generate_data:
     output:
-        "data/healthdata.csv"
-    shell:
-        "wget -O {output} 'https://healthdata.gov/resource/xkzp-zhs7.csv?\$limit=100000'"
+        "data/input.csv"
+    conda:
+        "envs/pandas.yaml"
+    script:
+        "scripts/generate_data.py"
