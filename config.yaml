@@ -1,6 +1,6 @@
-dataset: data/cars.csv
-x: "Make"
-y: "Price"
-scatter_x: "Year"
-color: "Color"
-title: "Car Prices by Make"
+x: "Patient_ID"
+y: "Age"
+scatter_x: "Heart_Rate"
+color: "Cholesterol"
+title: "Medical Data"
+dataset_size: 200
